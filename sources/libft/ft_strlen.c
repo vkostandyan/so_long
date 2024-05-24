@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 18:42:49 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/23 21:22:45 by vkostand         ###   ########.fr       */
+/*   Created: 2024/01/23 15:52:38 by vkostand          #+#    #+#             */
+/*   Updated: 2024/05/24 17:16:27 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	send_error(char *str)
+int	ft_strlen(char const *s)
 {
-	ft_putstr_fd(str, 2);
-	exit(1);
-}
+	int	i;
 
-// void    init_struct()
+	i = 0;
+	// if (!s)
+	// 	return (0);
+	// printf("c\n");
+	while (s[i])
+		i++;
+	return (i);
+}

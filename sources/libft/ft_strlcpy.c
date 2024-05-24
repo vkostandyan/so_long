@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 20:41:32 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/23 21:41:24 by vkostand         ###   ########.fr       */
+/*   Created: 2024/02/02 11:27:15 by vkostand          #+#    #+#             */
+/*   Updated: 2024/02/02 11:49:51 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-t_so_long init_map()
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-    int fd;
-    char *str;
-    t_so_long so_long;
+	size_t	i;
+	size_t	j;
 
-    fd = open("map.ber", O_RDONLY);
-    printf("%d\n", fd);
-    if (fd == -1)
-        send_error(FILE_OPEN_ERR);
-    str = get_next_line(fd);
-    printf("%s\n", str);
-    if (str)
-        so_long.line_len = ft_strlen(str);
-    else
-        so_long.line_len = -1;
-    return (so_long);
+	j = ft_strlen(src);
+	if (dstsize == 0)
+		return (j);
+	i = 0;
+	while (i < dstsize - 1 && src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (j);
 }

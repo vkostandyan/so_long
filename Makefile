@@ -1,29 +1,56 @@
-NAME = so_long
-
-CFLAGS = -Wall -Wextra -Werror
-
+NAME = a.out
+CFLAGS = -Wall -Wextra -Werror 
 CC = cc
+#-fsanitize=address
+SRCS =	main.c
 
-SRCS = \
-		validation.c \
-		utils.c \
-		./libft/ft_putstr_fd.c \
-		./libft/ft_strlen.c \
-		./libft/ft_strncmp.c \
-		./libft/ft_strjoin.c \
-		./libft/ft_strchr.c \
-		map.c \
-		./get_next_line/get_next_line.c \
-		./get_next_line/get_next_line_utils.c \
-		# ./get_next_line/libft/ft_strjoin.c
+HEADER = 	so_long.h \
+			libft.h \
+			get_next_line.h
 
+VALIDATION = validation.c \
+			 utils.c \
+			 map.c
+
+LIBFT = ft_putstr_fd.c \
+		ft_strncmp.c \
+		ft_strjoin.c \
+		ft_strlen.c \
+		ft_strchr.c \
+		ft_strtrim.c \
+		ft_strdup.c \
+		ft_substr.c \
+		ft_strlcpy.c \
+		ft_split.c
+
+GNL = 	get_next_line.c \
+		get_next_line_utils.c 
+
+SRCS_DIR = ./sources/
+HEADER_DIR = ./includes/
+LIBFT_DIR = ./sources/libft/
+GNL_DIR = ./sources/get_next_line/
+VALIDATION_DIR = ./sources/validation/
+
+SRCS := $(addprefix $(SRCS_DIR), $(SRCS))
+HEADER := $(addprefix $(HEADER_DIR), $(HEADER)) 
+LIBFT := $(addprefix $(LIBFT_DIR), $(LIBFT))
+GNL := $(addprefix $(GNL_DIR), $(GNL))
+VALIDATION := $(addprefix $(VALIDATION_DIR), $(VALIDATION))
+
+SRCS += $(LIBFT)
+SRCS += $(GNL)
+SRCS += $(VALIDATION)
 
 OBJS = ${SRCS:.c=.o}
 
 all: ${NAME}
 
-${NAME}: ${OBJS} Makefile so_long.h
-	@${CC} ${CFLAGS} main.c ${OBJS} -o ${NAME}
+${NAME}: ${OBJS} Makefile 
+	@${CC} ${CFLAGS} -I$(HEADER_DIR) ${OBJS} -o ${NAME}
+
+.c.o:
+	@$(CC) $(CFLAGS) -I$(HEADER_DIR) -c  $< -o $(<:.c=.o)
 
 clean:
 	rm -rf ${OBJS}
@@ -34,3 +61,4 @@ fclean: clean
 re: fclean ${NAME}
 
 .PHONY: all clean fclean re
+

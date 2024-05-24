@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 15:52:38 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/23 21:39:49 by vkostand         ###   ########.fr       */
+/*   Created: 2024/02/02 17:55:00 by vkostand          #+#    #+#             */
+/*   Updated: 2024/05/24 18:53:29 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(char const *s)
+char	*ft_substr(char const *s, int start, int len)
 {
-	int	i;
+	char	*s1;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	if (!s)
+		return (NULL);
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s))
+		len = ft_strlen(s);
+	s1 = (char *)malloc(sizeof(char const) * (len + 1));
+	if (!s1)
+		return (NULL);
+	ft_strlcpy(s1, s + start, len + 1);
+	return (s1);
 }

@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 18:34:10 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/23 19:10:39 by vkostand         ###   ########.fr       */
+/*   Created: 2024/02/29 19:13:38 by vkostand          #+#    #+#             */
+/*   Updated: 2024/05/24 14:29:12 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void check_name(char *av)
-{
-    int len;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-    len = ft_strlen(av) - 4;
-    if (len <= 0 || ft_strncmp(".ber", av + len, 4) != 0)
-        send_error(FILE_NAME_ERR);
-}
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
-void parse(int argc, char **argv)
-{
-    (void)argv;
-    if (argc != 2)
-        send_error(ARG_ERR);
-    check_name(argv[1]);
-}
+char	*get_next_line(int fd);
+int		gnl_strlen(char *s);
+int		gnl_strchr(const char *s, int c);
+char	*gnl_strjoin(char *s1, char *s2);
+char	*gnl_join(char *s1, char *s2);
+
+#endif
