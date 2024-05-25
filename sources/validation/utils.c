@@ -6,7 +6,7 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:42:49 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/24 22:13:13 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/05/25 20:33:28 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	free_matrix(char **str)
 
 void	send_error(char *str)
 {
+	if (!str)
+		return ;
 	ft_putstr_fd(str, 2);
+	system("leaks a.out");
 	exit(1);
 }
 

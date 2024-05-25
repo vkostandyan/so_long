@@ -6,7 +6,7 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:29:27 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/24 22:07:53 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/05/25 19:06:18 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,21 @@ int main(int argc, char **argv)
     
     init_struct(&so_long);
     parse(argc, argv, &so_long);
-    // system("leaks a.out");
+    // printf("exits -> %d\n", so_long.counter.exit);
+    // printf("coins -> %d\n", so_long.counter.coin);
+    // printf("0 -> %d\n", so_long.counter.empty_space);
+    // printf("enemy -> %d\n", so_long.counter.enemy);
+    // printf("player -> %d\n", so_long.counter.player);
+    // printf("walls -> %d\n", so_long.counter.wall);
+    // (void)argc;
+    // (void)argv;
+    // char *str = "   1111 ";
+    // printf("%s\n", str);
+    // char *new = ft_strtrim(str, " \t\v");
+    // printf("%s\n", new);
+    // printf("%s\n", str);
+    // printf("%d\n", is_empty_line(" 1111111111111 "));
+    system("leaks a.out");
     return (0);
 }
 
