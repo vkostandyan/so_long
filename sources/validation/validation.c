@@ -6,7 +6,7 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:34:10 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/25 20:33:03 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:19:06 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,122 +22,6 @@ void check_name(int argc, char **argv)
     if (len <= 0 || ft_strncmp(".ber", argv[1] + len, 4) != 0)
         send_error(FILE_NAME_ERR);
 } 
-
-// void check_chars(char *str, t_so_long *so_long)
-// {
-//     int i;
-
-//     i = 0;
-//     while (str[i])
-//     {
-//         if (str[i] == '1')
-//             so_long->counter.wall++;
-//         else if (str[i] == '0')
-//             so_long->counter.empty_space++;
-//         else if (str[i] == 'E')
-//             so_long->counter.exit++;
-//         else if (str[i] == 'C')
-//             so_long->counter.coin++;
-//         else if (str[i] == 'P')
-//             so_long->counter.player++;
-//         else if (str[i] == 'O')
-//             so_long->counter.enemy++;
-//         else if (str[i] != ' ' && str[i] != '\n' && str[i] != '\t' && str[i] != '\v')
-//         {
-//             free(str);
-//             send_error(CHAR_ERR);
-//         }
-//         i++;
-//     }
-// }
-
-// char *check_chars_quantity(t_so_long *so_long)
-// {
-//     if (so_long->counter.coin < 1)
-//         return (COIN_ERR);
-//     if (so_long->counter.exit != 1)
-//         return (EXIT_ERR);
-//     if (so_long->counter.player != 1)
-//         return (PLAYER_ERR);
-//     // if (so_long->counter.coin < 1)
-//     //     return (COIN_ERR);
-//     // if (so_long->counter.coin < 1)
-//     //     return (COIN_ERR);
-//     return (NULL);
-// }
-
-// char *read_map(int fd)
-// {
-//     char *str;
-//     char *res = "";
-//     char *temp;
-//     // char *temp_str;
-//     int flag;
-    
-//     flag = 0;
-//     while (1)
-//     {
-//         str = get_next_line(fd);
-//         if (!str)
-//             break;
-//         // temp_str = ft_strtrim(str, " \t\v");
-//         temp = res;
-//         res = ft_strjoin(temp, str);
-//         if (flag)
-//             free(temp);
-//         free(str);
-//         // free(temp_str);  
-//         flag = 1;
-//     } 
-//     return (res);
-// }
-
-// void remove_begin_end_spaces(char *str)
-// {
-//     int new_start;
-//     int new_end;
-//     char *new_str;
-
-//     new_start = 0;
-//     new_end = ft_strlen(str) - 1;
-//     while (str[new_start] == ' ' || str[new_start] == '\v' || str[new_start] == '\t' || str[new_start] == '\n')
-//         new_start++;
-//     while (str[new_end] == ' ' || str[new_end] == '\v' || str[new_end] == '\t' || str[new_start] == '\n')
-//         new_end++;
-//     new_str = ft_substr(str, new_start, new_end - new_start);
-//     printf("------------------------------------------\n");
-//     printf("%s", new_str);
-//     printf("\n------------------------------------------\n");
-// }
-
-// char **split_map(char *file_name, t_so_long *so_long)
-// {
-//     int fd;
-//     char **map;
-    
-    
-//     fd = open(file_name, O_RDONLY);
-//     if (fd == -1)
-//         return (NULL);
-//     char *str = read_map(fd);
-//     check_chars(str, so_long);
-//     if (check_chars_quantity(so_long))
-//     {
-//         free(str);
-//         send_error(check_chars_quantity(so_long));
-//     }
-//     // remove_begin_end_spaces(str);
-//     map = ft_split(str, '\n');
-//     free(str);
-//     close (fd);
-//     return (map);
-// }
-
-
-
-// -------------------------------------------
-
-
 
 int is_empty_line(char *str, char *set)
 {
@@ -260,27 +144,75 @@ void clean_map(char **argv, t_so_long *so_long)
     if (line_contains_spaces(temp, " \t\v"))
         send_error(EMPTY_LINE_ERR);
     str = temp;
-    printf("%s\n\n", str);
     so_long->map = ft_split(str, '\n');
-    int i = 0;
+    free(str);
+}
+
+void check_rectangle(t_so_long *so_long)
+{
+    int i;
+    int len;
+    int temp;
+
+    i = 1;
+    if (!so_long->map || !so_long->map[0])
+    {
+        free_matrix(so_long->map);
+        send_error("ERROR\n");
+    }
+    len = ft_strlen(so_long->map[0]);
     while (so_long->map[i])
     {
-        printf("%s\n", so_long->map[i]);
+        temp = ft_strlen(so_long->map[i]);
+        if (temp != len)
+        {
+            free_matrix(so_long->map);
+            send_error(RECTANGLE_ERR);
+        }
         i++;
     }
-    free(str);
+    so_long->line = i;
+    so_long->column = len;
+}
+
+void check_walls(t_so_long *so_long)
+{
+    int i;
+    
+    i = 0;
+    while (i < so_long->column)
+    {
+        if (so_long->map[0][i] != '1' || so_long->map[so_long->line - 1][i] != '1')
+        {
+            free_matrix(so_long->map);
+            send_error(WALL_ERR);
+        }
+        i++;
+    }
+    i = 1;
+    while(i < so_long->line - 2)
+    {
+        if(so_long->map[i][0] != '1' || so_long->map[i][so_long->column - 1] != '1')
+        {
+            free_matrix(so_long->map);
+            send_error(WALL_ERR);
+        }
+        i++;
+    }
 }
 
 void parse(int argc, char **argv, t_so_long *so_long)
 {
     check_name(argc, argv);
     clean_map(argv, so_long);
-    // char **arr = split_map(argv[1], so_long);
-    // int i = 0;
-    // while (arr[i])
-    // {
-    //     printf("%s\n", arr[i]);
-    //     i++;
-    // }
-    // free_matrix(arr);
+    check_rectangle(so_long);
+    check_walls(so_long);
+    char **arr = so_long->map;
+    int i = 0;
+    while (arr[i])
+    {
+        printf("%s\n", arr[i]);
+        i++;
+    }
+    free_matrix(arr);
 }

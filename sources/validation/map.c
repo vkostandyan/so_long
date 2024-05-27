@@ -6,7 +6,7 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 20:41:32 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/24 12:12:19 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:57:13 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ t_so_long init_map()
     str = get_next_line(fd);
     printf("%s\n", str);
     if (str)
-        so_long.line_len = ft_strlen(str);
+        so_long.column = ft_strlen(str);
     else
-        so_long.line_len = -1;
+        so_long.column = -1;
     return (so_long);
 }

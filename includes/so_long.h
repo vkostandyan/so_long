@@ -6,7 +6,7 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:29:39 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/25 20:25:23 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:59:19 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define EXIT_ERR "Map must contain 1 exit\n"
 # define FD_ERR "Map must contain 1 exit\n"
 # define EMPTY_LINE_ERR "Map must not have empty spaces\n"
+# define RECTANGLE_ERR "Map must be rectangular\n"
+# define WALL_ERR "Map must be surrounded by walls\n"
 
 typedef struct s_counter
 {
@@ -40,7 +42,7 @@ typedef struct s_so_long
 {
     char **map;
     int line;
-    int line_len;
+    int column;
     t_counter counter;
 }       t_so_long;        
       

@@ -6,7 +6,7 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:29:27 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/25 19:06:18 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:56:54 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void init_struct(t_so_long *so_long)
     so_long->counter.wall = 0;
     so_long->counter.wall = 0;
     so_long->line = 0;
-    so_long->line_len = 0;
+    so_long->column = 0;
 }
 
 int main(int argc, char **argv)
