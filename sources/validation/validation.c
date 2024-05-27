@@ -6,7 +6,7 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:34:10 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/27 17:19:06 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/05/27 17:36:04 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,14 @@ int line_contains_spaces(char *str, char *set)
 
 char *check_chars_quantity(t_so_long *so_long)
 {
+    if (so_long->counter.wall < 1)
+        return ("Error\n");
     if (so_long->counter.coin < 1)
         return (COIN_ERR);
     if (so_long->counter.exit != 1)
         return (EXIT_ERR);
     if (so_long->counter.player != 1)
         return (PLAYER_ERR);
-    // if (so_long->counter.coin < 1)
-    //     return (COIN_ERR);
-    // if (so_long->counter.coin < 1)
-    //     return (COIN_ERR);
     return (NULL);
 }
 
@@ -136,9 +134,10 @@ void clean_map(char **argv, t_so_long *so_long)
     temp = check_chars_quantity(so_long);
     if (temp)
     {
-        free(str);
-        send_error(CHAR_ERR);
+        // free(str);
+        send_error(temp);
     }
+    printf("bbb\n");
     temp = ft_trim(str, " \t\v\n");
     free(str);
     if (line_contains_spaces(temp, " \t\v"))
@@ -204,6 +203,7 @@ void check_walls(t_so_long *so_long)
 void parse(int argc, char **argv, t_so_long *so_long)
 {
     check_name(argc, argv);
+    printf("aa\n");
     clean_map(argv, so_long);
     check_rectangle(so_long);
     check_walls(so_long);
