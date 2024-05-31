@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 20:11:41 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/31 21:03:46 by vkostand         ###   ########.fr       */
+/*   Created: 2024/05/31 20:37:10 by vkostand          #+#    #+#             */
+/*   Updated: 2024/05/31 20:37:12 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-int	ft_strchr(char *s, int c)
+char	*ft_strcpy(char *dest, char *src)
 {
 	int	i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	if (c == '\0')
-		return (1);
-	while (s[i] != '\0')
+	while (src[i])
 	{
-		if (s[i] == (char) c)
-			return (1);
+		dest[i] = src[i];
 		i++;
 	}
-	return (0);
+	dest[i] = '\0';
+	return (dest);
 }
-/*
-int	main(void)
-{
-	printf("%c", *ft_strchr("ssada", 't'));
-	return (0);
-}*/

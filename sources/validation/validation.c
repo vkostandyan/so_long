@@ -6,7 +6,7 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:34:10 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/27 17:36:04 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/05/31 21:49:14 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,6 @@ void clean_map(char **argv, t_so_long *so_long)
         // free(str);
         send_error(temp);
     }
-    printf("bbb\n");
     temp = ft_trim(str, " \t\v\n");
     free(str);
     if (line_contains_spaces(temp, " \t\v"))
@@ -170,8 +169,10 @@ void check_rectangle(t_so_long *so_long)
         }
         i++;
     }
-    so_long->line = i;
-    so_long->column = len;
+    so_long->map_size.column = len;
+    so_long->map_size.line = i;
+    // so_long->line = i;
+    // so_long->column = len;
 }
 
 void check_walls(t_so_long *so_long)
@@ -179,9 +180,9 @@ void check_walls(t_so_long *so_long)
     int i;
     
     i = 0;
-    while (i < so_long->column)
+    while (i < so_long->map_size.column)
     {
-        if (so_long->map[0][i] != '1' || so_long->map[so_long->line - 1][i] != '1')
+        if (so_long->map[0][i] != '1' || so_long->map[so_long->map_size.line - 1][i] != '1')
         {
             free_matrix(so_long->map);
             send_error(WALL_ERR);
@@ -189,9 +190,9 @@ void check_walls(t_so_long *so_long)
         i++;
     }
     i = 1;
-    while(i < so_long->line - 2)
+    while(i < so_long->map_size.line - 2)
     {
-        if(so_long->map[i][0] != '1' || so_long->map[i][so_long->column - 1] != '1')
+        if(so_long->map[i][0] != '1' || so_long->map[i][so_long->map_size.column - 1] != '1')
         {
             free_matrix(so_long->map);
             send_error(WALL_ERR);
@@ -203,16 +204,15 @@ void check_walls(t_so_long *so_long)
 void parse(int argc, char **argv, t_so_long *so_long)
 {
     check_name(argc, argv);
-    printf("aa\n");
     clean_map(argv, so_long);
     check_rectangle(so_long);
     check_walls(so_long);
-    char **arr = so_long->map;
+    printf("%d %d\n", so_long->map_size.column, so_long->map_size.line);
     int i = 0;
-    while (arr[i])
+    while (so_long->map[i])
     {
-        printf("%s\n", arr[i]);
+        printf("%s\n", so_long->map[i]);
         i++;
     }
-    free_matrix(arr);
+    check_map_is_playable(so_long);
 }

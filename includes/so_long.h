@@ -6,7 +6,7 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:29:39 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/27 15:59:19 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/05/31 20:38:37 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@
 # define EMPTY_LINE_ERR "Map must not have empty spaces\n"
 # define RECTANGLE_ERR "Map must be rectangular\n"
 # define WALL_ERR "Map must be surrounded by walls\n"
+# define MALLOC_ERR "Memory allocation failed\n"
+
+typedef struct s_point
+{
+	int			line;
+	int			column;
+}				t_point;
 
 typedef struct s_counter
 {
@@ -43,6 +50,8 @@ typedef struct s_so_long
     char **map;
     int line;
     int column;
+    t_point map_size;
+    t_point player_position;
     t_counter counter;
 }       t_so_long;        
       
@@ -56,6 +65,10 @@ int	    char_match(char c, char const *str);
 int     is_empty_line(char *str, char *set);
 char	*ft_join(char const *s1, char const *s2);
 char	*ft_trim(char const *s1, char const *set);
+void    find_player_position(t_so_long *so_long);
+void	flood_fill(char **tab, t_point size, t_point cur, char to_fill);
+char	*ft_strcpy(char *dest, char *src);
+void    check_map_is_playable(t_so_long *so_long);
 
 //--------------------- Error -------------------------
 void	send_error(char *str);

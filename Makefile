@@ -1,4 +1,4 @@
-NAME = a.out
+NAME = aa.out
 CFLAGS = -Wall -Wextra -Werror 
 CC = cc
 #-fsanitize=address
@@ -10,7 +10,8 @@ HEADER = 	so_long.h \
 
 VALIDATION = validation.c \
 			 utils.c \
-			 map.c
+			 map.c \
+			 is_map_playable.c
 
 LIBFT = ft_putstr_fd.c \
 		ft_strncmp.c \
@@ -21,7 +22,9 @@ LIBFT = ft_putstr_fd.c \
 		ft_strdup.c \
 		ft_substr.c \
 		ft_strlcpy.c \
-		ft_split.c
+		ft_split.c \
+		flood_fill.c \
+		ft_strcpy.c
 
 GNL = 	get_next_line.c \
 		get_next_line_utils.c 
