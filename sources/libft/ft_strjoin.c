@@ -6,7 +6,7 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 20:54:07 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/25 19:50:02 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/06/12 20:28:39 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 // {
 // 	char *temp;
 // 	char *s;
-	
 // 	temp = ft_strjoin(s1, "\n");
 // 	s = ft_strjoin(temp, s2);
 // 	free(temp);
@@ -59,8 +58,7 @@ char	*ft_join(char const *s1, char const *s2)
 
 	if (!s2)
 		return (NULL);
-	s = (char *)malloc(sizeof(char const)
-			* (ft_strlen(s1) + ft_strlen(s2) + 2));
+	s = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 2));
 	if (s == NULL)
 		return (NULL);
 	i = 0;

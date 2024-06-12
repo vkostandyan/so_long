@@ -6,7 +6,7 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:52:38 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/24 17:16:27 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/06/12 20:25:30 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ int	ft_strlen(char const *s)
 	int	i;
 
 	i = 0;
-	// if (!s)
-	// 	return (0);
-	// printf("c\n");
+	if (!s)
+		return (0);
 	while (s[i])
 		i++;
 	return (i);

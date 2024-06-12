@@ -6,7 +6,7 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 13:33:36 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/25 20:01:39 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/06/12 20:25:14 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	start = 0;
 	end = ft_strlen(s1) - 1;
-	// while (s1[start] && char_match(s1[start], set))
-	// 	start++;
 	while (end > 0 && char_match(s1[end], set))
 		end--;
 	if (end < start)
@@ -92,4 +90,3 @@ char	*ft_trim(char const *s1, char const *set)
 	// s1copy[i] = '\0';
 	return (ft_substr(s1, left, (right - left + 1)));
 }*/
-

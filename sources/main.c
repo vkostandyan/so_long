@@ -6,56 +6,42 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:29:27 by vkostand          #+#    #+#             */
-/*   Updated: 2024/05/27 15:56:54 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/06/12 20:29:20 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void init_struct(t_so_long *so_long)
+void	init_struct(t_so_long *so_long)
 {
-    so_long->counter.player = 0;
-    so_long->counter.enemy = 0;
-    so_long->counter.exit = 0;
-    so_long->counter.coin = 0;
-    so_long->counter.wall = 0;
-    so_long->counter.wall = 0;
-    so_long->line = 0;
-    so_long->column = 0;
+	so_long->counter.player = 0;
+	so_long->counter.enemy = 0;
+	so_long->counter.exit = 0;
+	so_long->counter.coin = 0;
+	so_long->counter.wall = 0;
+	so_long->counter.wall = 0;
+	so_long->line = 0;
+	so_long->column = 0;
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_so_long so_long;
-    
-    init_struct(&so_long);
-    parse(argc, argv, &so_long);
-    // printf("exits -> %d\n", so_long.counter.exit);
-    // printf("coins -> %d\n", so_long.counter.coin);
-    // printf("0 -> %d\n", so_long.counter.empty_space);
-    // printf("enemy -> %d\n", so_long.counter.enemy);
-    // printf("player -> %d\n", so_long.counter.player);
-    // printf("walls -> %d\n", so_long.counter.wall);
-    // (void)argc;
-    // (void)argv;
-    // char *str = "   1111 ";
-    // printf("%s\n", str);
-    // char *new = ft_strtrim(str, " \t\v");
-    // printf("%s\n", new);
-    // printf("%s\n", str);
-    // printf("%d\n", is_empty_line(" 1111111111111 "));
-    system("leaks a.out");
-    return (0);
+	t_so_long	so_long;
+
+	init_struct(&so_long);
+	parse(argc, argv, &so_long);
+	system("leaks a.out");
+	return (0);
 }
 
 // int main(int argc, char **argv)
 // {
 //     // // t_so_long so_long;
-    
-//     // // parse(argc, argv); 
+
+//     // // parse(argc, argv);
 //     // // so_long = init_map();
 //     // // printf("alo\n");
-//     // // printf("%d\n", so_long.line_len);  
+//     // // printf("%d\n", so_long.line_len);
 //     // (void)argc;
 //     // (void)argv;
 //     // int fd = open("map.ber", O_RDONLY);
