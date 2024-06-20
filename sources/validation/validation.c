@@ -6,13 +6,13 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:34:10 by vkostand          #+#    #+#             */
-/*   Updated: 2024/06/12 20:24:02 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:26:16 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_name(int argc, char **argv)
+static void	check_name(int argc, char **argv)
 {
 	int	len;
 
@@ -23,7 +23,7 @@ void	check_name(int argc, char **argv)
 		send_error(FILE_NAME_ERR);
 }
 
-void	clean_map(char **argv, t_so_long *so_long)
+static void	clean_map(char **argv, t_so_long *so_long)
 {
 	int		fd;
 	char	*str;
@@ -47,7 +47,7 @@ void	clean_map(char **argv, t_so_long *so_long)
 	free(str);
 }
 
-void	check_rectangle(t_so_long *so_long)
+static void	check_rectangle(t_so_long *so_long)
 {
 	int	i;
 	int	len;
@@ -74,7 +74,7 @@ void	check_rectangle(t_so_long *so_long)
 	so_long->map_size.line = i;
 }
 
-void	check_walls(t_so_long *so_long)
+static void	check_walls(t_so_long *so_long)
 {
 	int	i;
 
@@ -109,4 +109,5 @@ void	parse(int argc, char **argv, t_so_long *so_long)
 	check_rectangle(so_long);
 	check_walls(so_long);
 	check_map_is_playable(so_long);
+	check_size(so_long);
 }

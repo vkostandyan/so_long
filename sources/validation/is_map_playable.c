@@ -6,15 +6,16 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 20:25:50 by vkostand          #+#    #+#             */
-/*   Updated: 2024/06/12 20:18:48 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/06/20 17:24:28 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_flood_fill(char **map, int line, int column)
+static void	ft_flood_fill(char **map, int line, int column)
 {
-	if (map[line][column] == '1' || map[line][column] == 'F')
+	if (map[line][column] == '1' || map[line][column] == 'F'
+		|| map[line][column] == 'X')
 		return ;
 	if (ft_strchr("ECP", map[line][column]))
 		map[line][column] = '0';
@@ -25,7 +26,7 @@ void	ft_flood_fill(char **map, int line, int column)
 	ft_flood_fill(map, line, column + 1);
 }
 
-void	find_player_position(t_so_long *so_long)
+static void	find_player_position(t_so_long *so_long)
 {
 	int	i;
 	int	j;
@@ -76,7 +77,7 @@ static char	**copy_map(t_so_long *so_long)
 	return (copy);
 }
 
-void	map_is_playable(char **str, t_so_long *so_long)
+static void	map_is_playable(char **str, t_so_long *so_long)
 {
 	int	i;
 	int	j;
@@ -91,7 +92,7 @@ void	map_is_playable(char **str, t_so_long *so_long)
 			{
 				free_matrix(so_long->map);
 				free_matrix(str);
-				send_error("Invalid path\n");
+				send_error("\033[1;31mInvalid path\033[0m\n");
 			}
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: vkostand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 20:11:07 by vkostand          #+#    #+#             */
-/*   Updated: 2024/06/12 20:19:53 by vkostand         ###   ########.fr       */
+/*   Updated: 2024/06/20 12:38:14 by vkostand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	check_chars(char *str, t_so_long *so_long)
 			so_long->counter.coin++;
 		else if (str[i] == 'P')
 			so_long->counter.player++;
-		else if (str[i] == 'O')
+		else if (str[i] == 'X')
 			so_long->counter.enemy++;
 		else if (str[i] != ' ' && str[i] != '\n' && str[i] != '\t'
 			&& str[i] != '\v')
